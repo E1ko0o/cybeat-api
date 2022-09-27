@@ -1,0 +1,1 @@
+web: ./build/install/cybeat-api/bin/cybeat-api

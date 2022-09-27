@@ -1,0 +1,123 @@
+####
+#POST http://127.0.0.1:8080/customer
+#Content-Type: application/json
+#
+#{
+#  "id": 100,
+#  "firstName": "Jane",
+#  "lastName": "Smith",
+#  "phone": "89500442211"
+#}
+#
+####
+#GET http://127.0.0.1:8080/customer
+#Content-Type: : application/json
+#
+####
+#PUT http://127.0.0.1:8080/customer/100
+#Content-Type: application/json
+#
+#{
+#  "id": 100,
+#  "firstName": "J",
+#  "lastName": "S",
+#  "phone": "89500442211"
+#}
+#
+####
+#GET http://127.0.0.1:8080/customer
+#Content-Type: : application/json
+#
+#
+####
+#POST http://127.0.0.1:8080/customer
+#Content-Type: application/json
+#
+#{
+#  "id": 200,
+#  "firstName": "John",
+#  "lastName": "Smith",
+#  "phone": "89500442211"
+#}
+#
+####
+#POST http://127.0.0.1:8080/customer
+#Content-Type: application/json
+#
+#{
+#  "id": 300,
+#  "firstName": "Mary",
+#  "lastName": "Smith",
+#  "phone": "89500442211"
+#}
+#
+
+####
+#GET http://127.0.0.1:8080/customer
+#Accept: application/json
+#
+####
+#GET http://127.0.0.1:8080/customer/200
+#Accept: application/json
+#
+####
+#GET http://127.0.0.1:8080/customer/500
+#Accept: application/json
+#
+####
+#DELETE http://127.0.0.1:8080/customer/100
+#
+####
+#DELETE http://127.0.0.1:8080/customer/500
+#
+####
+#GET http://127.0.0.1:8080/order
+#Content-Type: application/json
+#
+####
+#GET http://127.0.0.1:8080/order/2020-04-06-01
+#Content-Type: application/json
+#
+####
+#GET http://127.0.0.1:8080/order/2020-04-06-01/total
+#Content-Type: application/json
+
+
+###
+GET http://127.0.0.1:8080/menu
+Content-Type: application/json
+
+###
+DELETE http://127.0.0.1:8080/menu
+Content-Type: application/json
+
+###
+POST http://127.0.0.1:8080/menu
+Content-Type: application/json
+
+[
+  {
+    "id": 1,
+    "item": "Ham Sandwich",
+    "category": {
+      "id": 3,
+      "name": "Burgers"
+    },
+    "amount": 2,
+    "price": 55,
+    "weight": 100,
+    "calories": 100
+  },
+  {
+    "id": 2,
+    "item": "Water",
+    "category": {
+      "id": 4,
+      "name": "Drinks"
+    },
+    "amount": 1,
+    "price": 15,
+    "weight": 250,
+    "calories": 100
+  }
+]
