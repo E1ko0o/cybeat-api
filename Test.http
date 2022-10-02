@@ -1,86 +1,86 @@
-####
-#POST http://127.0.0.1:8080/customer
-#Content-Type: application/json
-#
-#{
-#  "id": 100,
-#  "firstName": "Jane",
-#  "lastName": "Smith",
-#  "phone": "89500442211"
-#}
-#
-####
-#GET http://127.0.0.1:8080/customer
-#Content-Type: : application/json
-#
-####
-#PUT http://127.0.0.1:8080/customer/100
-#Content-Type: application/json
-#
-#{
-#  "id": 100,
-#  "firstName": "J",
-#  "lastName": "S",
-#  "phone": "89500442211"
-#}
-#
-####
-#GET http://127.0.0.1:8080/customer
-#Content-Type: : application/json
-#
-#
-####
-#POST http://127.0.0.1:8080/customer
-#Content-Type: application/json
-#
-#{
-#  "id": 200,
-#  "firstName": "John",
-#  "lastName": "Smith",
-#  "phone": "89500442211"
-#}
-#
-####
-#POST http://127.0.0.1:8080/customer
-#Content-Type: application/json
-#
-#{
-#  "id": 300,
-#  "firstName": "Mary",
-#  "lastName": "Smith",
-#  "phone": "89500442211"
-#}
-#
+###
+POST http://127.0.0.1:8080/customer
+Content-Type: application/json
 
-####
-#GET http://127.0.0.1:8080/customer
-#Accept: application/json
-#
-####
-#GET http://127.0.0.1:8080/customer/200
-#Accept: application/json
-#
-####
-#GET http://127.0.0.1:8080/customer/500
-#Accept: application/json
-#
-####
-#DELETE http://127.0.0.1:8080/customer/100
-#
-####
-#DELETE http://127.0.0.1:8080/customer/500
-#
-####
-#GET http://127.0.0.1:8080/order
-#Content-Type: application/json
-#
-####
-#GET http://127.0.0.1:8080/order/2020-04-06-01
-#Content-Type: application/json
-#
-####
-#GET http://127.0.0.1:8080/order/2020-04-06-01/total
-#Content-Type: application/json
+{
+  "id": 100,
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "phone": "89500442211"
+}
+
+###
+GET http://127.0.0.1:8080/customer
+Content-Type: : application/json
+
+###
+PUT http://127.0.0.1:8080/customer/100
+Content-Type: application/json
+
+{
+  "id": 100,
+  "firstName": "J",
+  "lastName": "S",
+  "phone": "89500442211"
+}
+
+###
+GET http://127.0.0.1:8080/customer
+Content-Type: : application/json
+
+
+###
+POST http://127.0.0.1:8080/customer
+Content-Type: application/json
+
+{
+  "id": 200,
+  "firstName": "John",
+  "lastName": "Smith",
+  "phone": "89500442211"
+}
+
+###
+POST http://127.0.0.1:8080/customer
+Content-Type: application/json
+
+{
+  "id": 300,
+  "firstName": "Mary",
+  "lastName": "Smith",
+  "phone": "89500442211"
+}
+
+
+###
+GET http://127.0.0.1:8080/customer
+Accept: application/json
+
+###
+GET http://127.0.0.1:8080/customer/200
+Accept: application/json
+
+###
+GET http://127.0.0.1:8080/customer/500
+Accept: application/json
+
+###
+DELETE http://127.0.0.1:8080/customer/100
+
+###
+DELETE http://127.0.0.1:8080/customer/500
+
+###
+GET http://127.0.0.1:8080/order
+Content-Type: application/json
+
+###
+GET http://127.0.0.1:8080/order/2020-04-06-01
+Content-Type: application/json
+
+###
+GET http://127.0.0.1:8080/order/2020-04-06-01/total
+Content-Type: application/json
 
 
 ###
@@ -121,3 +121,33 @@ Content-Type: application/json
     "calories": 100
   }
 ]
+
+###
+GET http://127.0.0.1:8080/category
+Content-Type: : application/json
+
+###
+GET http://127.0.0.1:8080/category/1
+Content-Type: : application/json
+
+###
+POST http://127.0.0.1:8080/category
+Content-Type: application/json
+
+{
+  "id": 6,
+  "name": "Alcohol"
+}
+
+###
+PUT http://127.0.0.1:8080/category/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Pasta"
+}
+
+###
+DELETE http://127.0.0.1:8080/category/1
+Content-Type: application/json

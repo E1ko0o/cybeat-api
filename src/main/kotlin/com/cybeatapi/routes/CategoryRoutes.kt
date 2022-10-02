@@ -61,16 +61,23 @@ fun Route.updateCategoryRoute() {
             "No \"id\" field",
             status = HttpStatusCode.BadRequest
         )
-        if (categoryStorage.removeIf { it.id == id }) {
-            categoryStorage.add(category)
-            call.respondText(
-                "Category updated correctly",
-                status = HttpStatusCode.Accepted
-            )
+        if (id == category.id) {
+            if (categoryStorage.removeIf { it.id == id }) {
+                categoryStorage.add(category)
+                call.respondText(
+                    "Category updated correctly",
+                    status = HttpStatusCode.Accepted
+                )
+            } else {
+                call.respondText(
+                    "No category with id $id",
+                    status = HttpStatusCode.NotFound
+                )
+            }
         } else {
             call.respondText(
-                "No category with id $id",
-                status = HttpStatusCode.NotFound
+                "Id in body must be equal to id in parameters",
+                status = HttpStatusCode.Conflict
             )
         }
     }
