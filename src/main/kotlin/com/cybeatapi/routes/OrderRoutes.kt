@@ -32,7 +32,7 @@ fun Route.getOrderRoute() {
             status = HttpStatusCode.BadRequest
         )
         val order = orderStorage.find { it.id == id } ?: return@get call.respondText(
-            "Order not found",
+            "No order with id $id",
             status = HttpStatusCode.NotFound
         )
         call.respond(order)
@@ -46,7 +46,7 @@ fun Route.totalizeOrderRoute() {
             status = HttpStatusCode.BadRequest
         )
         val order = orderStorage.find { it.id == id } ?: return@get call.respondText(
-            "Order not Found",
+            "No order with id $id",
             status = HttpStatusCode.NotFound
         )
         val total = order.contents.sumOf { it.item.price * it.item.amount }
