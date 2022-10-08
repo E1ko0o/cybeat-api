@@ -1,0 +1,31 @@
+Category(1, "Sushi"),
+Category(2, "Pizza"),
+Category(3, "Burgers"),
+Category(4, "Drinks"),
+Category(5, "Sausages"),
+
+MenuItem(1, "Ham Sandwich", 3, 2, "55", 100, 100),
+MenuItem(2, "Water", 4, 1, "15", 250, 100),
+MenuItem(3, "Beer", 4, 3, "23", 200, 350),
+MenuItem(4, "Cheesecake", 5, 1, "37", 150, 252),
+MenuItem(5, "Cheeseburger", 2, 1, "85", 230, 501),
+MenuItem(6, "Coke", 4, 2, "17", 50, 70),
+MenuItem(7, "Ice Cream", 1, 1, "23", 120, 130),
+
+
+    Order(
+        1, listOf(
+            OrderItem(1, Dish(1,"Ham Sandwich", 3, 2, "55", 100, 100)),
+            OrderItem(2, Dish(2,"Water", 4, 1, "15", 250, 100)),
+            OrderItem(3, Dish(3,"Beer", 4, 3, "23", 200, 350)),
+            OrderItem(4, Dish(4,"Cheesecake", 5, 1, "37", 150, 252)),
+        )
+    ),
+    Order(
+        2, listOf(
+            OrderItem(5, Dish(5,"Cheeseburger", 2, 1, "85", 230, 501)),
+            OrderItem(6, Dish(2,"Water", 4, 2, "15", 250, 100)),
+            OrderItem(7, Dish(6, "Coke", 4, 2, "17", 50, 70)),
+            OrderItem(8, Dish(7,"Ice Cream", 1, 1, "23", 120, 130)),
+        )
+    )

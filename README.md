@@ -288,4 +288,80 @@ No order with id 1
 ***
 
 ## Menu
+### API call
+> GET https://cybeat-api.herokuapp.com/menu
+> <br> Headers: "Accept: application/json"
+#### Response
+> Menu as below
+```json
+[
+  {
+    "id": 1,
+    "item": "Ham Sandwich",
+    "category": {
+      "id": 3,
+      "name": "Burgers"
+    },
+    "amount": 2,
+    "price": 55,
+    "weight": 100,
+    "calories": 100,
+    "image": ""
+  },
+  {
+    "id": 2,
+    "item": "Water",
+    "category": {
+      "id": 4,
+      "name": "Drinks"
+    },
+    "amount": 1,
+    "price": 15,
+    "weight": 250,
+    "calories": 100,
+    "image": ""
+  }
+]
+```
+> Or message about operation as below
+```text
+Menu is empty
+```
+***
+
+### API call
+> DELETE https://cybeat-api.herokuapp.com/menu
+> <br> Headers: "Accept: application/json"
+#### Response
+> Message about operation from list below
+```text
+Menu cleared correctly
+```
+***
+
+### API call
+> POST https://cybeat-api.herokuapp.com/menu
+> <br> Headers: "Accept: application/json"
+#### Body
+`json object` which contains list of MenuItems: <br>
+* `id` required | type: `Integer` - Id of category<br>
+* `name` required | type: `String` - Name of category
+#### Example
+> POST https://cybeat-api.herokuapp.com/category
+> <br> Headers: "Accept: application/json"
+
+Body:
+```json
+{
+  "id": 6,
+  "name": "Alcohol"
+}
+```
+#### Response
+> Message about operation as below
+```text
+Category stored correctly
+```
+***
+
 ## Customer

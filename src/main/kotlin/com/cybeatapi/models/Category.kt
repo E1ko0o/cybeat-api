@@ -1,17 +1,15 @@
 package com.cybeatapi.models
 
-import kotlinx.serialization.Serializable
+import org.jetbrains.exposed.sql.Table
 
-@Serializable
 data class Category(
     val id: Int,
     val name: String
 )
 
-val categoryStorage = mutableListOf<Category>(
-    Category(1, "Sushi"),
-    Category(2, "Pizza"),
-    Category(3, "Burgers"),
-    Category(4, "Drinks"),
-    Category(5, "Sausages"),
-)
+object Categories: Table() {
+    val id = integer("id").autoIncrement()
+    val name = varchar("name", 32)
+
+    override val primaryKey = PrimaryKey(id)
+}

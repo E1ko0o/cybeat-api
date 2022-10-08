@@ -1,7 +1,7 @@
 package com.cybeatapi.routes
 
-import com.cybeatapi.models.MenuItem
-import com.cybeatapi.models.menuStorage
+import com.cybeatapi.models.Dish
+import com.cybeatapi.models.itemStorage
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
@@ -16,8 +16,10 @@ fun Route.allMenuRouting() {
 
 fun Route.getMenuRoute() {
     get("/menu") {
-        if (menuStorage.isNotEmpty()) {
-            call.respond(menuStorage)
+        if (itemStorage.isNotEmpty()) {
+            val items = listOf<Dish>()
+
+            call.respond(itemStorage)
         } else {
             return@get call.respondText(
                 "Menu is empty",
@@ -30,8 +32,8 @@ fun Route.getMenuRoute() {
 fun Route.clearMenu() {
     delete("/menu") {
         val i = 0
-        while (i != menuStorage.size) {
-            menuStorage.removeAt(i)
+        while (i != itemStorage.size) {
+            itemStorage.removeAt(i)
         }
         call.respondText(
             "Menu cleared correctly",
@@ -42,8 +44,8 @@ fun Route.clearMenu() {
 
 fun Route.addMenu() {
     post("/menu") {
-        val menu = call.receive<List<MenuItem>>()
-        menuStorage.addAll(menu)
+        val menu = call.receive<List<Int>>()
+        itemStorage.addAll(menu)
         call.respondText(
             "Menu stored correctly",
             status = HttpStatusCode.Created
