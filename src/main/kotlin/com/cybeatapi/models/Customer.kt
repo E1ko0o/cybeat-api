@@ -1,15 +1,19 @@
 package com.cybeatapi.models
 
+import com.cybeatapi.utils.DateSerializer
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.javatime.CurrentDateTime
 import org.jetbrains.exposed.sql.javatime.datetime
 import java.util.Date
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Customer(
     val id: Int,
     val firstName: String,
     val lastName: String,
     val phone: String,
+    @Serializable(DateSerializer::class)
     val registrationDate: Date
 )
 

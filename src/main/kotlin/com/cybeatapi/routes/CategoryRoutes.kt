@@ -1,7 +1,7 @@
 package com.cybeatapi.routes
 
+import com.cybeatapi.dao.category.dao
 import com.cybeatapi.models.Category
-import com.cybeatapi.models.categoryStorage
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
@@ -12,20 +12,13 @@ fun Route.allCategoryRouting() {
     getCategoriesRoute()
     getCategoryByIdRoute()
     addCategoryRoute()
-    updateCategoryRoute()
-    deleteCategoryRoute()
+//    updateCategoryRoute()
+//    deleteCategoryRoute()
 }
 
 fun Route.getCategoriesRoute() {
     get("/category") {
-        if (categoryStorage.isNotEmpty()) {
-            call.respond(categoryStorage)
-        } else {
-            return@get call.respondText(
-                "There is no categories",
-                status = HttpStatusCode.OK
-            )
-        }
+        call.respond(dao.getAll())
     }
 }
 
@@ -35,25 +28,19 @@ fun Route.getCategoryByIdRoute() {
             "No \"id\" field",
             status = HttpStatusCode.BadRequest
         )
-        val order = categoryStorage.find { it.id == id } ?: return@get call.respondText(
-            "No category with id $id",
-            status = HttpStatusCode.NotFound
-        )
-        call.respond(order)
+        call.respond(dao.getById(id) ?: "No category with id $id")
     }
 }
 
 fun Route.addCategoryRoute() {
     post("/category") {
         val category = call.receive<Category>()
-        categoryStorage.add(category)
-        call.respondText(
-            "Category stored correctly",
-            status = HttpStatusCode.Created
-        )
+//        call.respond(dao.add(category.name) ?: "An error occurs, try later")
+        call.respond(dao.add(category) ?: "An error occurs, try later")
     }
 }
 
+/*
 fun Route.updateCategoryRoute() {
     put("/category/{id?}") {
         val category = call.receive<Category>()
@@ -102,3 +89,4 @@ fun Route.deleteCategoryRoute() {
         }
     }
 }
+*/

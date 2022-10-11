@@ -1,7 +1,6 @@
 package com.cybeatapi.routes
 
 import com.cybeatapi.models.Dish
-import com.cybeatapi.models.itemStorage
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
@@ -9,46 +8,46 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Route.allMenuRouting() {
-    getMenuRoute()
-    clearMenu()
-    addMenu()
+//    getMenuRoute()
+//    clearMenu()
+//    addMenu()
 }
 
-fun Route.getMenuRoute() {
-    get("/menu") {
-        if (itemStorage.isNotEmpty()) {
-            val items = listOf<Dish>()
-
-            call.respond(itemStorage)
-        } else {
-            return@get call.respondText(
-                "Menu is empty",
-                status = HttpStatusCode.OK
-            )
-        }
-    }
-}
-
-fun Route.clearMenu() {
-    delete("/menu") {
-        val i = 0
-        while (i != itemStorage.size) {
-            itemStorage.removeAt(i)
-        }
-        call.respondText(
-            "Menu cleared correctly",
-            status = HttpStatusCode.Accepted
-        )
-    }
-}
-
-fun Route.addMenu() {
-    post("/menu") {
-        val menu = call.receive<List<Int>>()
-        itemStorage.addAll(menu)
-        call.respondText(
-            "Menu stored correctly",
-            status = HttpStatusCode.Created
-        )
-    }
-}
+//fun Route.getMenuRoute() {
+//    get("/menu") {
+//        if (itemStorage.isNotEmpty()) {
+//            val items = listOf<Dish>()
+//
+//            call.respond(itemStorage)
+//        } else {
+//            return@get call.respondText(
+//                "Menu is empty",
+//                status = HttpStatusCode.OK
+//            )
+//        }
+//    }
+//}
+//
+//fun Route.clearMenu() {
+//    delete("/menu") {
+//        val i = 0
+//        while (i != itemStorage.size) {
+//            itemStorage.removeAt(i)
+//        }
+//        call.respondText(
+//            "Menu cleared correctly",
+//            status = HttpStatusCode.Accepted
+//        )
+//    }
+//}
+//
+//fun Route.addMenu() {
+//    post("/menu") {
+//        val menu = call.receive<List<Int>>()
+//        itemStorage.addAll(menu)
+//        call.respondText(
+//            "Menu stored correctly",
+//            status = HttpStatusCode.Created
+//        )
+//    }
+//}

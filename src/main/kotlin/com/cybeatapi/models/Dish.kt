@@ -1,13 +1,17 @@
 package com.cybeatapi.models
 
+import com.cybeatapi.utils.BigDecimalSerializer
 import java.math.BigDecimal
 import org.jetbrains.exposed.sql.Table
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Dish(
     val id: Int,
     val item: String,
     val categoryId: Int,
     val amount: Int,
+    @Serializable(BigDecimalSerializer::class)
     var price: BigDecimal,
     val weight: Int?,
     val calories: Int?,

@@ -1,5 +1,6 @@
 package com.cybeatapi
 
+import com.cybeatapi.dao.DatabaseFactory
 import io.ktor.server.application.*
 import com.cybeatapi.plugins.*
 
@@ -8,15 +9,7 @@ fun main(args: Array<String>): Unit =
 
 @Suppress("unused") // application.conf references the main function. This annotation prevents the IDE from marking it as unused.
 fun Application.module() {
-    configureSerialization()
+    DatabaseFactory.init()
     configureRouting()
+    configureSerialization()
 }
-/*
-TODO
-осталось:
-авторизация (согласовать с парнями типы авторизации)
-сделать модели бд
-реализовать запросы к моделям
-протестировать запросы
-опубликовать
-*/

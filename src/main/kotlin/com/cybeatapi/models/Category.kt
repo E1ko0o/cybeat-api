@@ -1,13 +1,15 @@
 package com.cybeatapi.models
 
 import org.jetbrains.exposed.sql.Table
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Category(
     val id: Int,
     val name: String
 )
 
-object Categories: Table() {
+object Categories : Table() {
     val id = integer("id").autoIncrement()
     val name = varchar("name", 32)
 
