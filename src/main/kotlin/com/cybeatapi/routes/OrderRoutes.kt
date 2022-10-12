@@ -11,7 +11,7 @@ fun Route.allOrderRouting() {
 //    totalizeOrderRoute()
 }
 
-//fun Route.getAllOrdersRoute() {
+//private fun Route.getAllOrdersRoute() {
 //    get("/order") {
 //        if (orderStorage.isNotEmpty()) {
 //            call.respond(orderStorage)
@@ -24,10 +24,10 @@ fun Route.allOrderRouting() {
 //    }
 //}
 //
-//fun Route.getOrderRoute() {
+//private fun Route.getOrderRoute() {
 //    get("/order/{id?}") {
 //        val id = call.parameters["id"]?.toInt() ?: return@get call.respondText(
-//            "No \"id\" field",
+//            "No \"id\" field in body of request",
 //            status = HttpStatusCode.BadRequest
 //        )
 //        val order = orderStorage.find { it.id == id } ?: return@get call.respondText(
@@ -38,10 +38,10 @@ fun Route.allOrderRouting() {
 //    }
 //}
 //
-//fun Route.totalizeOrderRoute() {
+//private fun Route.totalizeOrderRoute() {
 //    get("/order/{id?}/total") {
 //        val id = call.parameters["id"]?.toInt() ?: return@get call.respondText(
-//            "No \"id\" field",
+//            "No \"id\" field in body of request",
 //            status = HttpStatusCode.BadRequest
 //        )
 //        val order = orderStorage.find { it.id == id } ?: return@get call.respondText(

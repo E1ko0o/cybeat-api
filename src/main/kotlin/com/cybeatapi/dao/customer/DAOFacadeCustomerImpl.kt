@@ -24,13 +24,10 @@ class DAOFacadeImplCustomer : DAOFacadeCustomer {
     }
 
     override suspend fun getById(id: Int): Customer? = dbQuery {
-        Customers
-            .select { Customers.id eq id }
-            .map(::resultRow)
-            .singleOrNull()
+        Customers.select { Customers.id eq id }.map(::resultRow).singleOrNull()
     }
 
-    override suspend fun add(customer: Customer) = dbQuery {
+    override suspend fun add(customer: Customer): Customer? = dbQuery {
         val insertStatement = Customers.insert {
             it[firstName] = customer.firstName
             it[lastName] = customer.lastName

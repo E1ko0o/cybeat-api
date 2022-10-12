@@ -3,9 +3,6 @@ package com.cybeatapi.dao.category
 import com.cybeatapi.dao.DatabaseFactory.dbQuery
 import com.cybeatapi.models.Categories
 import com.cybeatapi.models.Category
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq

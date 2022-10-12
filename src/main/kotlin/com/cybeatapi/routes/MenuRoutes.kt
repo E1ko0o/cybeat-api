@@ -13,7 +13,7 @@ fun Route.allMenuRouting() {
 //    addMenu()
 }
 
-//fun Route.getMenuRoute() {
+//private fun Route.getMenuRoute() {
 //    get("/menu") {
 //        if (itemStorage.isNotEmpty()) {
 //            val items = listOf<Dish>()
@@ -28,7 +28,7 @@ fun Route.allMenuRouting() {
 //    }
 //}
 //
-//fun Route.clearMenu() {
+//private fun Route.clearMenu() {
 //    delete("/menu") {
 //        val i = 0
 //        while (i != itemStorage.size) {
@@ -41,7 +41,7 @@ fun Route.allMenuRouting() {
 //    }
 //}
 //
-//fun Route.addMenu() {
+//private fun Route.addMenu() {
 //    post("/menu") {
 //        val menu = call.receive<List<Int>>()
 //        itemStorage.addAll(menu)

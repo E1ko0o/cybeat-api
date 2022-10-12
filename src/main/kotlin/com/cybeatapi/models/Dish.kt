@@ -20,7 +20,7 @@ data class Dish(
 )
 
 object Dishes: Table() {
-    val id = integer("id").autoIncrement()
+    val id = integer("id").autoIncrement().uniqueIndex()
     val item = varchar("name", 64)
     val categoryId = (integer("category_id") references Categories.id) // foreign key
     val amount = integer("amount")

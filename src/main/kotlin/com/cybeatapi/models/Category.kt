@@ -10,7 +10,7 @@ data class Category(
 )
 
 object Categories : Table() {
-    val id = integer("id").autoIncrement()
+    val id = integer("id").autoIncrement().uniqueIndex()
     val name = varchar("name", 32)
 
     override val primaryKey = PrimaryKey(id)

@@ -17,7 +17,7 @@ data class Order(
 )
 
 object Orders: Table() {
-    val id = integer("id").autoIncrement()
+    val id = integer("id").autoIncrement().uniqueIndex()
     val date = datetime("date")
     val dishesIds = (integer("dishes_ids") references Dishes.id) // foreign key
     val serverId = varchar("server_id", 15) //abcd-abcde-abcd

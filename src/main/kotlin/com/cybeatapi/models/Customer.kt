@@ -18,7 +18,7 @@ data class Customer(
 )
 
 object Customers: Table() {
-    val id = integer("id").autoIncrement()
+    val id = integer("id").autoIncrement().uniqueIndex()
     val firstName = varchar("first_name", 64)
     val lastName = varchar("last_name", 64)
     val phone = varchar("phone", 16)
