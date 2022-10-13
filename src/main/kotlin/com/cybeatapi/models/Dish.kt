@@ -2,8 +2,8 @@ package com.cybeatapi.models
 
 import com.cybeatapi.utils.BigDecimalSerializer
 import java.math.BigDecimal
-import org.jetbrains.exposed.sql.Table
 import kotlinx.serialization.Serializable
+import org.jetbrains.exposed.dao.id.IntIdTable
 
 @Serializable
 data class Dish(
@@ -19,17 +19,13 @@ data class Dish(
     val description: String?
 )
 
-object Dishes: Table() {
-    val id = integer("id").autoIncrement().uniqueIndex()
+object Dishes: IntIdTable() {
     val item = varchar("name", 64)
-    val categoryId = (integer("category_id") references Categories.id) // foreign key
+    val categoryId = (integer("category_id").references(Categories.id)) // foreign key
     val amount = integer("amount")
     var price = decimal("price", 9, 2) // decimal like "1234567.89"
     val weight = integer("weight").nullable()
     val calories = integer("calories").nullable()
     val image = varchar("image", 256).nullable()
     val description = varchar("description", 128).nullable()
-
-    override val primaryKey = PrimaryKey(id)
-
 }

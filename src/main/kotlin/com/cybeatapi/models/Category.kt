@@ -1,7 +1,7 @@
 package com.cybeatapi.models
 
-import org.jetbrains.exposed.sql.Table
 import kotlinx.serialization.Serializable
+import org.jetbrains.exposed.dao.id.IntIdTable
 
 @Serializable
 data class Category(
@@ -9,9 +9,6 @@ data class Category(
     val name: String
 )
 
-object Categories : Table() {
-    val id = integer("id").autoIncrement().uniqueIndex()
+object Categories : IntIdTable() {
     val name = varchar("name", 32)
-
-    override val primaryKey = PrimaryKey(id)
 }

@@ -10,7 +10,7 @@ import java.math.BigDecimal
 
 class DAOFacadeDishImpl : DAOFacadeDish {
     private fun resultRow(row: ResultRow) = Dish(
-        id = row[Dishes.id],
+        id = row[Dishes.id].value,
         item = row[Dishes.item],
         categoryId = row[Dishes.categoryId],
         amount = row[Dishes.amount],
@@ -29,30 +29,30 @@ class DAOFacadeDishImpl : DAOFacadeDish {
         Dishes.select { Dishes.id eq id }.map(::resultRow).singleOrNull()
     }
 
-    override suspend fun add(dish: Dish): Dish? = dbQuery {
+    override suspend fun add(value: Dish): Dish? = dbQuery {
         val insertStatement = Dishes.insert {
-            it[item] = dish.item
-            it[categoryId] = dish.categoryId
-            it[amount] = dish.amount
-            it[price] = dish.price
-            it[weight] = dish.weight
-            it[calories] = dish.calories
-            it[image] = dish.image
-            it[description] = dish.description
+            it[item] = value.item
+            it[categoryId] = value.categoryId
+            it[amount] = value.amount
+            it[price] = value.price
+            it[weight] = value.weight
+            it[calories] = value.calories
+            it[image] = value.image
+            it[description] = value.description
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRow)
     }
 
-    override suspend fun edit(dish: Dish): Boolean = dbQuery {
-        Dishes.update({ Dishes.id eq dish.id }) {
-            it[item] = dish.item
-            it[categoryId] = dish.categoryId
-            it[amount] = dish.amount
-            it[price] = dish.price
-            it[weight] = dish.weight
-            it[calories] = dish.calories
-            it[image] = dish.image
-            it[description] = dish.description
+    override suspend fun edit(value: Dish): Boolean = dbQuery {
+        Dishes.update({ Dishes.id eq value.id }) {
+            it[item] = value.item
+            it[categoryId] = value.categoryId
+            it[amount] = value.amount
+            it[price] = value.price
+            it[weight] = value.weight
+            it[calories] = value.calories
+            it[image] = value.image
+            it[description] = value.description
         } > 0
     }
 

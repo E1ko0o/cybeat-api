@@ -12,7 +12,7 @@ import java.util.*
 class DAOFacadeImplCustomer : DAOFacadeCustomer {
 
     private fun resultRow(row: ResultRow) = Customer(
-        id = row[Customers.id],
+        id = row[Customers.id].value,
         firstName = row[Customers.firstName],
         lastName = row[Customers.lastName],
         phone = row[Customers.phone],
@@ -27,22 +27,22 @@ class DAOFacadeImplCustomer : DAOFacadeCustomer {
         Customers.select { Customers.id eq id }.map(::resultRow).singleOrNull()
     }
 
-    override suspend fun add(customer: Customer): Customer? = dbQuery {
+    override suspend fun add(value: Customer): Customer? = dbQuery {
         val insertStatement = Customers.insert {
-            it[firstName] = customer.firstName
-            it[lastName] = customer.lastName
-            it[phone] = customer.phone
-            it[registrationDate] = conv().convertToLocalDateTime(customer.registrationDate)
+            it[firstName] = value.firstName
+            it[lastName] = value.lastName
+            it[phone] = value.phone
+            it[registrationDate] = conv().convertToLocalDateTime(value.registrationDate)
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRow)
     }
 
-    override suspend fun edit(customer: Customer): Boolean = dbQuery {
-        Customers.update({ Customers.id eq customer.id }) {
-            it[firstName] = customer.firstName
-            it[lastName] = customer.lastName
-            it[phone] = customer.phone
-            it[registrationDate] = conv().convertToLocalDateTime(customer.registrationDate)
+    override suspend fun edit(value: Customer): Boolean = dbQuery {
+        Customers.update({ Customers.id eq value.id }) {
+            it[firstName] = value.firstName
+            it[lastName] = value.lastName
+            it[phone] = value.phone
+            it[registrationDate] = conv().convertToLocalDateTime(value.registrationDate)
         } > 0
     }
 

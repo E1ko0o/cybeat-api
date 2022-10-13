@@ -1,29 +1,23 @@
 package com.cybeatapi.routes
 
+import com.cybeatapi.dao.order.dao
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Route.allOrderRouting() {
-//    getAllOrdersRoute()
+    getOrdersRoute()
 //    getOrderRoute()
 //    totalizeOrderRoute()
 }
 
-//private fun Route.getAllOrdersRoute() {
-//    get("/order") {
-//        if (orderStorage.isNotEmpty()) {
-//            call.respond(orderStorage)
-//        } else {
-//            return@get call.respondText(
-//                "There is no orders",
-//                status = HttpStatusCode.OK
-//            )
-//        }
-//    }
-//}
-//
+private fun Route.getOrdersRoute() {
+    get("/order") {
+        call.respond(dao.getAll())
+    }
+}
+
 //private fun Route.getOrderRoute() {
 //    get("/order/{id?}") {
 //        val id = call.parameters["id"]?.toInt() ?: return@get call.respondText(

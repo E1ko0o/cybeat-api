@@ -9,7 +9,7 @@ import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 class DAOFacadeImplCategory : DAOFacadeCategory {
     private fun resultRow(row: ResultRow) = Category(
-        id = row[Categories.id],
+        id = row[Categories.id].value,
         name = row[Categories.name],
     )
 
@@ -24,16 +24,16 @@ class DAOFacadeImplCategory : DAOFacadeCategory {
             .singleOrNull()
     }
 
-    override suspend fun add(category: Category): Category? = dbQuery {
+    override suspend fun add(value: Category): Category? = dbQuery {
         val insertStatement = Categories.insert {
-            it[name] = category.name
+            it[name] = value.name
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRow)
     }
 
-    override suspend fun edit(category: Category): Boolean = dbQuery {
-        Categories.update({ Categories.id eq category.id }) {
-            it[name] = category.name
+    override suspend fun edit(value: Category): Boolean = dbQuery {
+        Categories.update({ Categories.id eq value.id }) {
+            it[name] = value.name
         } > 0
     }
 
