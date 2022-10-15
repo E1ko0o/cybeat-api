@@ -10,6 +10,5 @@ fun Application.configureRouting() {
         allCustomerRouting()
         allDishRouting()
         allOrderRouting()
-        allMenuRouting()
     }
 }

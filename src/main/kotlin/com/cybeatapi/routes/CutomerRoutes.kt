@@ -13,7 +13,8 @@ fun Route.allCustomerRouting() {
     getByIdRoute()
     addRoute()
     updateRoute()
-    deleteRoute()
+    deleteByIdRoute()
+    deleteAllRoute()
 }
 
 private fun Route.getAllRoute() {
@@ -51,7 +52,7 @@ private fun Route.updateRoute() {
             "No \"id\" field in body of request",
             status = HttpStatusCode.BadRequest
         )
-        if (dao.edit(id, newCustomer)) {
+        if (dao.update(id, newCustomer)) {
             return@put call.respondText(
                 "Customer updated correctly",
                 status = HttpStatusCode.Accepted
@@ -65,13 +66,13 @@ private fun Route.updateRoute() {
     }
 }
 
-private fun Route.deleteRoute() {
+private fun Route.deleteByIdRoute() {
     delete("/customer/{id?}") {
         val id = call.parameters["id"]?.toInt() ?: return@delete call.respondText(
             "No \"id\" field in body of request",
             status = HttpStatusCode.BadRequest
         )
-        if (dao.delete(id)) {
+        if (dao.deleteById(id)) {
             return@delete call.respondText(
                 "Customer removed correctly",
                 status = HttpStatusCode.Accepted
@@ -82,5 +83,14 @@ private fun Route.deleteRoute() {
                 status = HttpStatusCode.NotFound
             )
         }
+    }
+}
+
+private fun Route.deleteAllRoute() {
+    delete("/customer") {
+        call.respondText(
+            "${dao.deleteAll()} entries deleted",
+            status = HttpStatusCode.Accepted
+        )
     }
 }

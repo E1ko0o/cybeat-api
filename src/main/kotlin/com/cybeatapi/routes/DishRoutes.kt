@@ -13,7 +13,8 @@ fun Route.allDishRouting() {
     getByIdRoute()
     addRoute()
     updateRoute()
-    deleteRoute()
+    deleteByIdRoute()
+    deleteAllRoute()
 }
 
 private fun Route.getAllRoute() {
@@ -46,7 +47,7 @@ private fun Route.updateRoute() {
             "No\"id\" field in body of request",
             status = HttpStatusCode.BadRequest
         )
-        if (dao.edit(id, dish)) {
+        if (dao.update(id, dish)) {
             return@put call.respondText(
                 "Dish updated correctly",
                 status = HttpStatusCode.Accepted
@@ -60,13 +61,13 @@ private fun Route.updateRoute() {
     }
 }
 
-private fun Route.deleteRoute() {
+private fun Route.deleteByIdRoute() {
     delete("/dish/{id}") {
         val id = call.parameters["id"]?.toInt() ?: return@delete call.respondText(
             "No \"id\" field in body of request",
             status = HttpStatusCode.BadRequest
         )
-        if (dao.delete(id)) {
+        if (dao.deleteById(id)) {
             return@delete call.respondText(
                 "Dish removed correctly",
                 status = HttpStatusCode.Accepted
@@ -77,5 +78,14 @@ private fun Route.deleteRoute() {
                 status = HttpStatusCode.NotFound
             )
         }
+    }
+}
+
+private fun Route.deleteAllRoute() {
+    delete("/dish") {
+        call.respondText(
+            "${dao.deleteAll()} entries deleted",
+            status = HttpStatusCode.Accepted
+        )
     }
 }

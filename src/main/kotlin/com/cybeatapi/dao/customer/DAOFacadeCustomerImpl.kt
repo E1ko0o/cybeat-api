@@ -37,7 +37,7 @@ class DAOFacadeImplCustomer : DAOFacadeCustomer {
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRow)
     }
 
-    override suspend fun edit(id: Int, value: Customer): Boolean = dbQuery {
+    override suspend fun update(id: Int, value: Customer): Boolean = dbQuery {
         Customers.update({ Customers.id eq id }) {
             it[firstName] = value.firstName
             it[lastName] = value.lastName
@@ -46,8 +46,12 @@ class DAOFacadeImplCustomer : DAOFacadeCustomer {
         } > 0
     }
 
-    override suspend fun delete(id: Int): Boolean = dbQuery {
+    override suspend fun deleteById(id: Int): Boolean = dbQuery {
         Customers.deleteWhere { Customers.id eq id } > 0
+    }
+
+    override suspend fun deleteAll(): Int = dbQuery {
+        Customers.deleteAll()
     }
 }
 

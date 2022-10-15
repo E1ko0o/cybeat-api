@@ -43,7 +43,7 @@ class DAOFacadeDishImpl : DAOFacadeDish {
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRow)
     }
 
-    override suspend fun edit(id: Int, value: Dish): Boolean = dbQuery {
+    override suspend fun update(id: Int, value: Dish): Boolean = dbQuery {
         Dishes.update({ Dishes.id eq id }) {
             it[item] = value.item
             it[categoryId] = value.categoryId
@@ -56,15 +56,19 @@ class DAOFacadeDishImpl : DAOFacadeDish {
         } > 0
     }
 
-    override suspend fun delete(id: Int): Boolean = dbQuery {
+    override suspend fun deleteById(id: Int): Boolean = dbQuery {
         Dishes.deleteWhere { Dishes.id eq id } > 0
+    }
+
+    override suspend fun deleteAll(): Int = dbQuery {
+        Dishes.deleteAll()
     }
 }
 
 val dao: DAOFacadeDish = DAOFacadeDishImpl().apply {
     runBlocking {
         if (getAll().isEmpty()) {
-            add(Dish(0, "Test item", 1, 1, (BigDecimal(1)), null, null, null, null))
+            add(Dish(0, "Test item", 17, 1, (BigDecimal(1)), null, null, null, null))
         } //TODO delete
     }
 }

@@ -31,14 +31,18 @@ class DAOFacadeImplCategory : DAOFacadeCategory {
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRow)
     }
 
-    override suspend fun edit(id: Int, value: Category): Boolean = dbQuery {
+    override suspend fun update(id: Int, value: Category): Boolean = dbQuery {
         Categories.update({ Categories.id eq id }) {
             it[name] = value.name
         } > 0
     }
 
-    override suspend fun delete(id: Int): Boolean = dbQuery {
+    override suspend fun deleteById(id: Int): Boolean = dbQuery {
         Categories.deleteWhere { Categories.id eq id } > 0
+    }
+
+    override suspend fun deleteAll(): Int = dbQuery {
+        Categories.deleteAll()
     }
 }
 

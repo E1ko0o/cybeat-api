@@ -45,8 +45,12 @@ class DAOFacadeOrderImpl : DAOFacadeOrder {
         } > 0
     }
 
-    override suspend fun delete(id: Int): Boolean = dbQuery {
+    override suspend fun deleteById(id: Int): Boolean = dbQuery {
         Orders.deleteWhere { Orders.id eq id } > 0
+    }
+
+    override suspend fun deleteAll(): Int = dbQuery {
+        Orders.deleteAll()
     }
 }
 
