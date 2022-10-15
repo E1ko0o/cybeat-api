@@ -1,8 +1,8 @@
 # Cybeat-API
 [Category](#Category)<br>
 [Customer](#Customer)<br>
-[Order](#Order)<br>
 [Dish](#Dish)<br>
+[Order](#Order)<br>
 
 ## Category
 ### API call
