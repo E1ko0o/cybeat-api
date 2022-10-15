@@ -3,72 +3,34 @@ POST http://127.0.0.1:8080/customer
 Content-Type: application/json
 
 {
-  "id": 100,
   "firstName": "Jane",
   "lastName": "Smith",
-  "phone": "89500442211"
+  "phone": "89500442211",
+  "registrationDate": "Oct 15, 2022, 1:40:51 PM"
 }
 
 ###
-GET http://127.0.0.1:8080/customer
-Content-Type: : application/json
-
-###
-PUT http://127.0.0.1:8080/customer/100
+PUT http://127.0.0.1:8080/customer/4
 Content-Type: application/json
 
 {
-  "id": 100,
-  "firstName": "J",
-  "lastName": "S",
-  "phone": "89500442211"
-}
-
-###
-GET http://127.0.0.1:8080/customer
-Content-Type: : application/json
-
-
-###
-POST http://127.0.0.1:8080/customer
-Content-Type: application/json
-
-{
-  "id": 200,
   "firstName": "John",
-  "lastName": "Smith",
-  "phone": "89500442211"
+  "lastName": "Snow",
+  "phone": "89500442211",
+  "registrationDate": "Oct 10, 2022, 6:35:51 PM"
 }
-
-###
-POST http://127.0.0.1:8080/customer
-Content-Type: application/json
-
-{
-  "id": 300,
-  "firstName": "Mary",
-  "lastName": "Smith",
-  "phone": "89500442211"
-}
-
 
 ###
 GET http://127.0.0.1:8080/customer
+Content-Type: : application/json
+
+###
+GET http://127.0.0.1:8080/customer/4
 Accept: application/json
 
 ###
-GET http://127.0.0.1:8080/customer/200
-Accept: application/json
+DELETE http://127.0.0.1:8080/customer/4
 
-###
-GET http://127.0.0.1:8080/customer/500
-Accept: application/json
-
-###
-DELETE http://127.0.0.1:8080/customer/100
-
-###
-DELETE http://127.0.0.1:8080/customer/500
 
 ###
 GET http://127.0.0.1:8080/order
@@ -135,7 +97,6 @@ POST http://127.0.0.1:8080/category
 Content-Type: application/json
 
 {
-  "id": 6,
   "name": "Alcohol"
 }
 
@@ -144,10 +105,52 @@ PUT http://127.0.0.1:8080/category/1
 Content-Type: application/json
 
 {
-  "id": 1,
   "name": "Pasta"
 }
 
 ###
-DELETE http://127.0.0.1:8080/category/1
+DELETE http://127.0.0.1:8080/category/4
+Content-Type: application/json
+
+
+###
+GET http://127.0.0.1:8080/dish
+Content-Type: : application/json
+
+###
+GET http://127.0.0.1:8080/dish/2
+Content-Type: : application/json
+
+###
+POST http://127.0.0.1:8080/dish
+Content-Type: application/json
+
+{
+  "item": "Burger",
+  "categoryId": 1,
+  "amount": 200,
+  "price": 19.90,
+  "weight": 50,
+  "calories": 67,
+  "image": null,
+  "description": ""
+}
+
+###
+PUT http://127.0.0.1:8080/dish/1
+Content-Type: application/json
+
+{
+  "item": "Cheese",
+  "categoryId": 14,
+  "amount": 1000,
+  "price": 20,
+  "weight": null,
+  "calories": null,
+  "image": "",
+  "description": ""
+}
+
+###
+DELETE http://127.0.0.1:8080/dish/2
 Content-Type: application/json

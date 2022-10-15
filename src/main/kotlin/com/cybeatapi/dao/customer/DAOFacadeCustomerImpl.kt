@@ -37,8 +37,8 @@ class DAOFacadeImplCustomer : DAOFacadeCustomer {
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRow)
     }
 
-    override suspend fun edit(value: Customer): Boolean = dbQuery {
-        Customers.update({ Customers.id eq value.id }) {
+    override suspend fun edit(id: Int, value: Customer): Boolean = dbQuery {
+        Customers.update({ Customers.id eq id }) {
             it[firstName] = value.firstName
             it[lastName] = value.lastName
             it[phone] = value.phone

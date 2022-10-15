@@ -1,7 +1,6 @@
 package com.cybeatapi.dao.order
 
 import com.cybeatapi.dao.DatabaseFactory.dbQuery
-import com.cybeatapi.dao.dish.DAOFacadeDish
 import com.cybeatapi.models.*
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.exposed.sql.*
@@ -28,9 +27,6 @@ class DAOFacadeOrderImpl : DAOFacadeOrder {
     }
 
     override suspend fun add(value: Order): Order? = dbQuery {
-//        for (i in value.dishesIds) {
-//            if ()
-//        } TODO check if dishesIds exist
         val insertStatement = Orders.insert {
             it[date] = conv().convertToLocalDateTime(value.date)
             it[dishesIds] = ids().getStringFromIds(value.dishesIds)
@@ -41,9 +37,6 @@ class DAOFacadeOrderImpl : DAOFacadeOrder {
     }
 
     override suspend fun edit(value: Order): Boolean = dbQuery {
-//        for (i in value.dishesIds) {
-//            if ()
-//        } TODO check if dishesIds exist
         Orders.update({ Orders.id eq value.id }) {
             it[date] = conv().convertToLocalDateTime(value.date)
             it[dishesIds] = ids().getStringFromIds(value.dishesIds)

@@ -43,8 +43,8 @@ class DAOFacadeDishImpl : DAOFacadeDish {
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRow)
     }
 
-    override suspend fun edit(value: Dish): Boolean = dbQuery {
-        Dishes.update({ Dishes.id eq value.id }) {
+    override suspend fun edit(id: Int, value: Dish): Boolean = dbQuery {
+        Dishes.update({ Dishes.id eq id }) {
             it[item] = value.item
             it[categoryId] = value.categoryId
             it[amount] = value.amount

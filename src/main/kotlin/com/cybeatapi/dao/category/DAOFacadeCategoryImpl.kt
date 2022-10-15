@@ -31,8 +31,8 @@ class DAOFacadeImplCategory : DAOFacadeCategory {
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRow)
     }
 
-    override suspend fun edit(value: Category): Boolean = dbQuery {
-        Categories.update({ Categories.id eq value.id }) {
+    override suspend fun edit(id: Int, value: Category): Boolean = dbQuery {
+        Categories.update({ Categories.id eq id }) {
             it[name] = value.name
         } > 0
     }
