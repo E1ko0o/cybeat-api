@@ -30,6 +30,7 @@ Accept: application/json
 
 ###
 DELETE http://127.0.0.1:8080/customer/4
+Content-Type: application/json
 
 
 ###
@@ -37,13 +38,50 @@ GET http://127.0.0.1:8080/order
 Content-Type: application/json
 
 ###
-GET http://127.0.0.1:8080/order/1
+GET http://127.0.0.1:8080/order/2
 Content-Type: application/json
 
 ###
-GET http://127.0.0.1:8080/order/1/total
+GET http://127.0.0.1:8080/order/1/price
 Content-Type: application/json
 
+###
+DELETE http://127.0.0.1:8080/order
+Content-Type: application/json
+
+###
+POST http://127.0.0.1:8080/order
+Content-Type: application/json
+
+{
+  "date": "Oct 17, 2022, 5:21:19 PM",
+  "dishesIds": [
+    7,
+    8
+  ],
+  "dishesPrices": [
+    2,
+    1
+  ],
+  "serverId": "aaaa-aaaaa-aaaa",
+  "orderId": 2
+}
+
+###
+PUT http://127.0.0.1:8080/order/3
+Content-Type: application/json
+
+{
+  "date": "Oct 17, 2022, 5:21:19 PM",
+  "dishesIds": [
+    7
+  ],
+  "dishesPrices": [
+    3
+  ],
+  "serverId": "aaaa-aaaaa-aaaa",
+  "orderId": 2
+}
 
 ###
 GET http://127.0.0.1:8080/category
@@ -89,7 +127,7 @@ Content-Type: application/json
 {
   "item": "Burger",
   "categoryId": 17,
-  "amount": 200,
+  "price": 200,
   "price": 19.90,
   "weight": 50,
   "calories": 67,
@@ -104,7 +142,7 @@ Content-Type: application/json
 {
   "item": "Cheese",
   "categoryId": 14,
-  "amount": 1000,
+  "price": 1000,
   "price": 20,
   "weight": null,
   "calories": null,

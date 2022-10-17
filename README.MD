@@ -168,7 +168,7 @@ No category with id 1
 > GET https://cybeat-api.herokuapp.com/customer/{id}
 > <br> Headers: "Accept: application/json"
 #### Parameters
-`id` required | type: `Integer` - Id of customer
+`id` required | type: `Integer`
 #### Example
 > GET https://cybeat-api.herokuapp.com/customer/1
 > <br> Accept: application/json
@@ -186,7 +186,7 @@ No category with id 1
 > Or message about operation from list below
 ```text
 No "id" field in body of request
-No category with id 1
+No customer with id 1
 ```
 ***
 
@@ -306,14 +306,12 @@ No category with id 1
     "id": 7,
     "item": "Test item",
     "categoryId": 17,
-    "amount": 1,
     "price": 1.00
   },
   {
     "id": 8,
     "item": "Burger",
     "categoryId": 17,
-    "amount": 200,
     "price": 19.90,
     "weight": 50,
     "calories": 67,
@@ -339,7 +337,6 @@ No category with id 1
   "id": 8,
   "item": "Burger",
   "categoryId": 17,
-  "amount": 200,
   "price": 19.90,
   "weight": 50,
   "calories": 67,
@@ -361,7 +358,6 @@ No dish with id 1
 `json object` which contains: <br>
 * `item` required | type: `String`
 * `categoryId` required | type: `Integer` - foreign key to Categories.id
-* `amount` required | type: `Integer`
 * `price` required | type: `BigDecimal/Float/Double`
 * `weight` optional | type: `Integer nullable` - in grams
 * `calories` optional | type: `Integer nullable` - in kcal
@@ -376,7 +372,6 @@ Body:
 {
   "item": "Burger",
   "categoryId": 17,
-  "amount": 200,
   "price": 19.90,
   "weight": 50,
   "calories": 67,
@@ -391,7 +386,6 @@ Body:
   "id": 8,
   "item": "Burger",
   "categoryId": 17,
-  "amount": 200,
   "price": 19.90,
   "weight": 50,
   "calories": 67,
@@ -414,7 +408,6 @@ An error occurred, try later
 `json object` which contains: <br>
 * `item` required | type: `String`
 * `categoryId` required | type: `Integer` - foreign key to Categories.id
-* `amount` required | type: `Integer`
 * `price` required | type: `BigDecimal/Float/Double`
 * `weight` optional | type: `Integer nullable` - in grams
 * `calories` optional | type: `Integer nullable` - in kcal
@@ -430,7 +423,6 @@ Body:
   "id": 7,
   "item": "Test item",
   "categoryId": 17,
-  "amount": 1,
   "price": 1.00
 }
 ```
@@ -439,7 +431,7 @@ Body:
 ```text
 Dish updated correctly
 No "id" field in body of request
-No dish with id 1
+No dish with id 7
 ```
 ***
 
@@ -478,95 +470,45 @@ No dish with id 1
 > GET https://cybeat-api.herokuapp.com/order
 > <br> Headers: "Accept: application/json"
 #### Response
-> List of orders as below
+> List of orders
 ```json
 [
   {
     "id": 1,
-    "contents": [
-      {
-        "id": 1,
-        "item": {
-          "id": 1,
-          "item": "Ham Sandwich",
-          "category": {
-            "id": 3,
-            "name": "Burgers"
-          },
-          "amount": 2,
-          "price": 55,
-          "weight": 100,
-          "calories": 100,
-          "image": ""
-        }
-      },
-      {
-        "id": 2,
-        "item": {
-          "id": 2,
-          "item": "Water",
-          "category": {
-            "id": 4,
-            "name": "Drinks"
-          },
-          "amount": 1,
-          "price": 15,
-          "weight": 250,
-          "calories": 100,
-          "image": ""
-        }
-      }
-    ]
+    "date": "Oct 17, 2022, 5:28:05 PM",
+    "dishesIds": [
+      7,
+      8
+    ],
+    "dishesPrices": [
+      2,
+      1
+    ],
+    "serverId": "aaaa-aaaaa-aaaa",
+    "orderId": 1
   },
   {
     "id": 2,
-    "contents": [
-      {
-        "id": 5,
-        "item": {
-          "id": 5,
-          "item": "Cheeseburger",
-          "category": {
-            "id": 2,
-            "name": "Pizza"
-          },
-          "amount": 1,
-          "price": 85,
-          "weight": 230,
-          "calories": 501,
-          "image": ""
-        }
-      },
-      {
-        "id": 6,
-        "item": {
-          "id": 2,
-          "item": "Water",
-          "category": {
-            "id": 4,
-            "name": "Drinks"
-          },
-          "amount": 2,
-          "price": 15,
-          "weight": 250,
-          "calories": 100,
-          "image": ""
-        }
-      }
-    ]
+    "date": "Oct 17, 2022, 5:28:07 PM",
+    "dishesIds": [
+      7
+    ],
+    "dishesPrices": [
+      3
+    ],
+    "serverId": "aaaa-aaaaa-aaaa",
+    "orderId": 2
   }
 ]
 ```
-> Or message about operation as below
-```text
-There is no orders
-```
 ***
+
+
 ### API call
 > GET https://cybeat-api.herokuapp.com/order/{id}
 > <br> Headers: "Accept: application/json"
 #### Parameters
-`id` required | type: `Integer` - Id of order
+`id` required | type: `Integer`
 #### Example
 > GET https://cybeat-api.herokuapp.com/order/1
 > <br> Accept: application/json
@@ -574,41 +516,17 @@ There is no orders
 > Order with specified id as below
 ```json
 {
-  "id": 1,
-  "contents": [
-    {
-      "id": 1,
-      "item": {
-        "id": 1,
-        "item": "Ham Sandwich",
-        "category": {
-          "id": 3,
-          "name": "Burgers"
-        },
-        "amount": 2,
-        "price": 55,
-        "weight": 100,
-        "calories": 100,
-        "image": ""
-      }
-    },
-    {
-      "id": 2,
-      "item": {
-        "id": 2,
-        "item": "Water",
-        "category": {
-          "id": 4,
-          "name": "Drinks"
-        },
-        "amount": 1,
-        "price": 15,
-        "weight": 250,
-        "calories": 100,
-        "image": ""
-      }
-    }
-  ]
+  "date": "Oct 17, 2022, 5:28:05 PM",
+  "dishesIds": [
+    7,
+    8
+  ],
+  "dishesPrices": [
+    2,
+    1
+  ],
+  "serverId": "aaaa-aaaaa-aaaa",
+  "orderId": 1
 }
 ```
 > Or message about operation from list below
@@ -617,20 +535,144 @@ No "id" field in body of request
 No order with id 1
 ```
 ***
+
+
 ### API call
-> GET https://cybeat-api.herokuapp.com/order/{id}/total
+> GET https://cybeat-api.herokuapp.com/order/{id}/price
 > <br> Headers: "Accept: application/json"
 #### Parameters
-`id` required | type: `Integer` - Id of order
+`id` required | type: `Integer`
 #### Example
-> GET https://cybeat-api.herokuapp.com/order/1
+> GET https://cybeat-api.herokuapp.com/order/1/price
 > <br> Accept: application/json
 #### Response
-> Order total with specified id as below
-231
+> Order price
+```text
+21.90
+```
 > Or message about operation from list below
 ```text
 No "id" field in body of request
 No order with id 1
+```
+***
+
+
+### API call
+> POST https://cybeat-api.herokuapp.com/order
+> <br> Headers: "Accept: application/json"
+#### Body
+`json object` which contains: <br>
+* `date` required | type: `LocalDateTime`
+* `dishesIds` required | type: `List<Integer>` - foreign key to Dishes.id
+* `dishesPrices` required | type: `List<Integer>`
+* `serverId` required | type: `String`
+* `orderId` required | type: `Integer `
+#### Example
+> POST https://cybeat-api.herokuapp.com/order
+> <br> Headers: "Accept: application/json"
+
+Body:
+```json
+{
+  "date": "Oct 17, 2022, 5:28:07 PM",
+  "dishesIds": [
+    7
+  ],
+  "dishesPrices": [
+    3
+  ],
+  "serverId": "aaaa-aaaaa-aaaa",
+  "orderId": 2
+}
+```
+#### Response
+> Dish with specified id as below
+```json
+{
+  "id": 2,
+  "date": "Oct 17, 2022, 5:28:07 PM",
+  "dishesIds": [
+    7
+  ],
+  "dishesPrices": [
+    3
+  ],
+  "serverId": "aaaa-aaaaa-aaaa",
+  "orderId": 2
+}
+```
+> Message about operation as below
+```text
+An error occurred, try later
+```
+***
+
+
+### API call
+> PUT https://cybeat-api.herokuapp.com/order/{id}
+> <br> Headers: "Accept: application/json"
+#### Parameters
+`id` required | type: `Integer`
+#### Body
+`json object` which contains: <br>
+* `date` required | type: `LocalDateTime`
+* `dishesIds` required | type: `List<Integer>` - foreign key to Dishes.id
+* `dishesPrices` required | type: `List<Integer>`
+* `serverId` required | type: `String`
+* `orderId` required | type: `Integer `
+#### Example
+> PUT https://cybeat-api.herokuapp.com/order/2
+> <br> Headers: "Accept: application/json"
+
+Body:
+```json
+{
+  "date": "Oct 17, 2022, 5:28:09 PM",
+  "dishesIds": [
+    8
+  ],
+  "dishesPrices": [
+    4
+  ],
+  "serverId": "aaaa-aaaaa-aaaa",
+  "orderId": 2
+}
+```
+#### Response
+> Message about operation from list below
+```text
+Order updated correctly
+No "id" field in body of request
+No order with id 2
+```
+***
+
+
+### API call
+> DELETE https://cybeat-api.herokuapp.com/order/{id}
+> <br> Headers: "Accept: application/json"
+#### Parameters
+`id` required | type: `Integer`
+#### Example
+> DELETE https://cybeat-api.herokuapp.com/order/1
+> <br> Headers: "Accept: application/json"
+#### Response
+> Message about operation from list below
+```text
+Order removed correctly
+No "id" field in body of request
+No order with id 1
+```
+***
+
+
+### API call
+> DELETE https://cybeat-api.herokuapp.com/order
+> <br> Headers: "Accept: application/json"
+#### Response
+> Message about operation from list below
+```text
+0 entries deleted
 ```
 ***

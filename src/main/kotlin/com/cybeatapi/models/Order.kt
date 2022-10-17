@@ -12,6 +12,7 @@ data class Order(
     @Serializable(DateSerializer::class)
     val date: Date,
     val dishesIds: List<Int>,
+    val dishesPrices: List<Int>,
     val serverId: String,
     val orderId: Int
 )
@@ -19,6 +20,7 @@ data class Order(
 object Orders: IntIdTable() {
     val date = datetime("date")
     val dishesIds = text("dishes_ids") // foreign key Dishes.id
+    val dishesPrices = text("dishes_prices")
     val serverId = varchar("server_id", 15) //abcd-abcde-abcd
-    val orderId = integer("order_id")
+    val orderId = integer("order_id").uniqueIndex()
 }

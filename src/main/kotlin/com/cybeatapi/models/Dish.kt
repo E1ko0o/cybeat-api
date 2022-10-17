@@ -10,7 +10,6 @@ data class Dish(
     val id: Int,
     val item: String,
     val categoryId: Int,
-    val amount: Int,
     @Serializable(BigDecimalSerializer::class)
     var price: BigDecimal,
     val weight: Int?,
@@ -22,7 +21,6 @@ data class Dish(
 object Dishes: IntIdTable() {
     val item = varchar("name", 64)
     val categoryId = (integer("category_id").references(Categories.id)) // foreign key
-    val amount = integer("amount")
     var price = decimal("price", 9, 2) // decimal like "1234567.89"
     val weight = integer("weight").nullable()
     val calories = integer("calories").nullable()

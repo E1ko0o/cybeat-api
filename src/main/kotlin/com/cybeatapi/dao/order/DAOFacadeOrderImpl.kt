@@ -7,13 +7,14 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import java.util.*
 import com.cybeatapi.utils.DateTimeConverter as conv
-import com.cybeatapi.utils.IdsUtil as ids
+import com.cybeatapi.utils.Converters as convs
 
 class DAOFacadeOrderImpl : DAOFacadeOrder {
     private fun resultRow(row: ResultRow) = Order(
         id = row[Orders.id].value,
         date = conv().convertToDate(row[Orders.date]),
-        dishesIds = ids().getIdsFromString(row[Orders.dishesIds]),
+        dishesIds = convs().getIntegersFromString(row[Orders.dishesIds]),
+        dishesPrices = convs().getIntegersFromString(row[Orders.dishesPrices]),
         serverId = row[Orders.serverId],
         orderId = row[Orders.orderId]
     )
@@ -29,17 +30,19 @@ class DAOFacadeOrderImpl : DAOFacadeOrder {
     override suspend fun add(value: Order): Order? = dbQuery {
         val insertStatement = Orders.insert {
             it[date] = conv().convertToLocalDateTime(value.date)
-            it[dishesIds] = ids().getStringFromIds(value.dishesIds)
+            it[dishesIds] = convs().getStringFromIntegers(value.dishesIds)
+            it[dishesPrices] = convs().getStringFromIntegers(value.dishesPrices)
             it[serverId] = value.serverId
             it[orderId] = value.orderId
         }
         insertStatement.resultedValues?.singleOrNull()?.let(::resultRow)
     }
 
-    override suspend fun edit(value: Order): Boolean = dbQuery {
-        Orders.update({ Orders.id eq value.id }) {
+    override suspend fun update(id: Int, value: Order): Boolean = dbQuery {
+        Orders.update({ Orders.id eq id }) {
             it[date] = conv().convertToLocalDateTime(value.date)
-            it[dishesIds] = ids().getStringFromIds(value.dishesIds)
+            it[dishesIds] = convs().getStringFromIntegers(value.dishesIds)
+            it[dishesPrices] = convs().getStringFromIntegers(value.dishesPrices)
             it[serverId] = value.serverId
             it[orderId] = value.orderId
         } > 0
@@ -57,7 +60,7 @@ class DAOFacadeOrderImpl : DAOFacadeOrder {
 val dao: DAOFacadeOrder = DAOFacadeOrderImpl().apply {
     runBlocking {
         if (getAll().isEmpty()) {
-            add(Order(1, Date(), listOf(1, 2), "aaaa-aaaaa-aaaa", 1))
+            add(Order(1, Date(), listOf(7, 8), listOf(2, 1), "aaaa-aaaaa-aaaa", 1))
         } //TODO delete
     }
 }

@@ -13,7 +13,6 @@ class DAOFacadeDishImpl : DAOFacadeDish {
         id = row[Dishes.id].value,
         item = row[Dishes.item],
         categoryId = row[Dishes.categoryId],
-        amount = row[Dishes.amount],
         price = row[Dishes.price],
         weight = row[Dishes.weight],
         calories = row[Dishes.calories],
@@ -33,7 +32,6 @@ class DAOFacadeDishImpl : DAOFacadeDish {
         val insertStatement = Dishes.insert {
             it[item] = value.item
             it[categoryId] = value.categoryId
-            it[amount] = value.amount
             it[price] = value.price
             it[weight] = value.weight
             it[calories] = value.calories
@@ -47,7 +45,6 @@ class DAOFacadeDishImpl : DAOFacadeDish {
         Dishes.update({ Dishes.id eq id }) {
             it[item] = value.item
             it[categoryId] = value.categoryId
-            it[amount] = value.amount
             it[price] = value.price
             it[weight] = value.weight
             it[calories] = value.calories
@@ -68,7 +65,7 @@ class DAOFacadeDishImpl : DAOFacadeDish {
 val dao: DAOFacadeDish = DAOFacadeDishImpl().apply {
     runBlocking {
         if (getAll().isEmpty()) {
-            add(Dish(0, "Test item", 17, 1, (BigDecimal(1)), null, null, null, null))
+            add(Dish(0, "Test item", 17, (BigDecimal(1)), null, null, null, null))
         } //TODO delete
     }
 }
