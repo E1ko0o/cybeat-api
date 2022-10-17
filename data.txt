@@ -17,4 +17,4 @@ MenuItem(7, "Ice Cream", 1, 1, "23", 120, 130),
             OrderItem(1, Dish(1,"Ham Sandwich", 3, 2, "55", 100, 100)),
             OrderItem(2, Dish(2,"Water", 4, 1, "15", 250, 100)),
             OrderItem(3, Dish(3,"Beer", 4, 3, "23", 200, 350)),
-            OrderItem(4, Dish(4,"Cheesecake", 5, 1, "37", 150, 252)),
+            OrderItem(4, Dish(4,"Cheesecake", 5, 1, "37", 150, 252))
