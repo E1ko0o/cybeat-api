@@ -34,14 +34,28 @@ private fun Route.getByIdRoute() {
             "No \"id\" field in body of request",
             status = HttpStatusCode.BadRequest
         )
-        call.respond(dao.getById(id) ?: "No customer with id $id")
+        val value = dao.getById(id)
+        if (value == null)
+            call.respondText(
+                "No customer with id $id",
+                status = HttpStatusCode.NotFound
+            )
+        else
+            call.respond(value)
     }
 }
 
 private fun Route.addRoute() {
     post("/customer") {
         val customer = call.receive<Customer>()
-        call.respond(dao.add(customer) ?: "An error occurred, try later")
+        val value = dao.add(customer)
+        if (value == null)
+            call.respondText(
+                "An error occurred, try later",
+                status = HttpStatusCode.NotFound
+            )
+        else
+            call.respond(value)
     }
 }
 

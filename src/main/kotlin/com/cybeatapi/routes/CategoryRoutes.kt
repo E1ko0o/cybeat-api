@@ -29,14 +29,28 @@ private fun Route.getByIdRoute() {
             "No \"id\" field in body of request",
             status = HttpStatusCode.BadRequest
         )
-        call.respond(dao.getById(id) ?: "No category with id $id")
+        val value = dao.getById(id)
+        if (value == null)
+            call.respondText(
+                "No category with id $id",
+                status = HttpStatusCode.NotFound
+            )
+        else
+            call.respond(value)
     }
 }
 
 private fun Route.addRoute() {
     post("/category") {
         val category = call.receive<Category>()
-        call.respond(dao.add(category) ?: "An error occurred, try later")
+        val value = dao.add(category)
+        if (value == null)
+            call.respondText(
+                "An error occurred, try later",
+                status = HttpStatusCode.NotFound
+            )
+        else
+            call.respond(value)
     }
 }
 

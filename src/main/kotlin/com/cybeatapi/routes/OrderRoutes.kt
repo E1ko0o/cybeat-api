@@ -31,7 +31,14 @@ private fun Route.getByIdRoute() {
             "No \"id\" field in body of request",
             status = HttpStatusCode.BadRequest
         )
-        call.respond(dao.getById(id) ?: "No order with id $id")
+        val value = dao.getById(id)
+        if (value == null)
+            call.respondText(
+                "No order with id $id",
+                status = HttpStatusCode.NotFound
+            )
+        else
+            call.respond(value)
     }
 }
 
@@ -59,7 +66,14 @@ private fun Route.calculateOrderPriceRoute() {
 private fun Route.addRoute() {
     post("/order") {
         val order = call.receive<Order>()
-        call.respond(dao.add(order) ?: "An error occurred, try later")
+        val value = dao.add(order)
+        if (value == null)
+            call.respondText(
+                "An error occurred, try later",
+                status = HttpStatusCode.BadRequest
+            )
+        else
+            call.respond(value)
     }
 }
 

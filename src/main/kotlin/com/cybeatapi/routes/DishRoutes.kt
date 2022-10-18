@@ -29,14 +29,28 @@ private fun Route.getByIdRoute() {
             "No \"id\" field in body of request",
             status = HttpStatusCode.BadRequest
         )
-        call.respond(dao.getById(id) ?: "No dish with id $id")
+        val value = dao.getById(id)
+        if (value == null)
+            call.respondText(
+                "No dish with id $id",
+                status = HttpStatusCode.NotFound
+            )
+        else
+            call.respond(value)
     }
 }
 
 private fun Route.addRoute() {
     post("/dish") {
         val dish = call.receive<Dish>()
-        call.respond(dao.add(dish) ?: "An error occurred, try later")
+        val value =dao.add(dish)
+        if (value == null)
+            call.respondText(
+                "An error occurred, try later",
+                status = HttpStatusCode.NotFound
+            )
+        else
+            call.respond(value)
     }
 }
 
